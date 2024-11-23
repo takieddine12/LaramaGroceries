@@ -14,8 +14,7 @@ class PasswordScreen extends StatefulWidget {
 class _PasswordScreenState extends State<PasswordScreen> {
 
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +39,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     const SizedBox(height: 5,),
                     CustomEditText(hint: "Email Address", textEditingController: _emailController, isPassword: false,
                         onTap: null, iconData: Icons.email),
-                    const SizedBox(height: 20,),
                     const SizedBox(height: 30,),
                     Center(child: CustomContainer(text: "Reset", onClick: (){})),
                   ],

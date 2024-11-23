@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,6 +16,13 @@ void main() async {
 
 _initialize() async {
    GetStorage.init();
+   await Firebase.initializeApp(
+     options: FirebaseOptions(
+         apiKey: "AIzaSyBRa_GsiPQbxN6_iy9M25gDP1Bndoy9U4o",
+         appId: "1:166941805808:android:a5112c429646783ec48635",
+         messagingSenderId: "166941805808",
+         projectId: "groceriesflutter")
+   );
 }
 
 class MyApp extends StatelessWidget {
