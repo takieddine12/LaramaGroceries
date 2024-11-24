@@ -38,10 +38,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
            UserCredential? userCredential = state.userCredential;
            if(userCredential?.user != null){
 
+             // UPLOAD DATA
+             BlocProvider.of<AuthBloc>(context).add(CreateUserAccountEvent(
+                 _fullNameController.text,
+                 _emailController.text,
+                 _phoneController.text,
+                 _addressController.text));
 
              Get.offAndToNamed(Routes.home);
 
-           } else{
+           }
+           else{
 
              Get.showSnackbar(GetSnackBar(
                title: "Register",
@@ -50,6 +57,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
              ));
 
            }
+        }
+        else if (state is CreateUserAccountState){
+          bool isSuccess = state.result;
+          if(isSuccess){
+
+            setState(() {
+              isLoading = false;
+            });
+
+            Get.showSnackbar(GetSnackBar(
+              title: "Register",
+              message: "Register Success",
+              duration: Duration(seconds: 2),
+            ));
+
+            Get.offAndToNamed(Routes.home);
+
+          } else {
+
+            setState(() {
+              isLoading = false;
+            });
+
+            Get.showSnackbar(GetSnackBar(
+              title: "Register",
+              message: "Register Failed",
+              duration: Duration(seconds: 2),
+            ));
+          }
         }
 
       },

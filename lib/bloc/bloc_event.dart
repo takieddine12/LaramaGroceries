@@ -38,12 +38,11 @@ class CreateUserAccountEvent extends BlocEvent {
   final String email;
   final String phone;
   final String address;
-  final String userUid;
 
-  CreateUserAccountEvent(this.fullName,this.email,this.phone,this.address,this.userUid);
+  CreateUserAccountEvent(this.fullName,this.email,this.phone,this.address);
 
   @override
-  List<Object?> get props => [fullName,email,phone,address,userUid];
+  List<Object?> get props => [fullName,email,phone,address];
 
 }
 
