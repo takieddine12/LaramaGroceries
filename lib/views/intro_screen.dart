@@ -83,7 +83,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     child: CustomContainer(text: "Get Started", onClick: (){
                       StorageHelper.setIsShown();
                       Get.offAndToNamed(Routes.login);
-                    }),
+                    }, isLoading: false,),
                   )
                 ],
               ),

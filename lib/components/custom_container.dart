@@ -4,7 +4,9 @@ import 'package:groceries/extras/utils.dart';
 class CustomContainer extends StatelessWidget {
   final String text;
   final Function() onClick;
-  const CustomContainer({super.key, required this.text , required this.onClick});
+  final bool isLoading;
+  const CustomContainer({super.key, required this.text , required this.onClick,
+  required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,13 @@ class CustomContainer extends StatelessWidget {
             color: Colors.blue
         ),
         child: Center(
-          child: Text(text,style: Utils.getBoldFont().copyWith(color: Colors.white),),
+          child: isLoading ?
+          SizedBox(
+            height: 20,
+            width: 20,
+            child: CircularProgressIndicator(),
+          ) :
+          Text(text,style: Utils.getBoldFont().copyWith(color: Colors.white),),
         ),
       ),
     );
