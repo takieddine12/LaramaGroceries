@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:groceries/extras/utils.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -24,7 +25,7 @@ class CustomContainer extends StatelessWidget {
           SizedBox(
             height: 20,
             width: 20,
-            child: CircularProgressIndicator(),
+            child: SpinKitDoubleBounce(size: 25,color: Colors.deepOrange,),
           ) :
           Text(text,style: Utils.getBoldFont().copyWith(color: Colors.white),),
         ),

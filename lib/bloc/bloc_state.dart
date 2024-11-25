@@ -30,4 +30,8 @@ class ResetUserPasswordState extends BlocState {
   bool result;
   ResetUserPasswordState(this.result);
 }
+class DeleteUserAccountState extends BlocState {
+  bool isDeleted;
+  DeleteUserAccountState(this.isDeleted);
+}
 

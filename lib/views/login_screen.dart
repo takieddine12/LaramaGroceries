@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocListener<AuthBloc,BlocState>(
       listener: (context,state){
 
         if(state is LoginUserState){

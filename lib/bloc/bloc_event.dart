@@ -56,4 +56,11 @@ class ResetUserPasswordEvent extends BlocEvent {
 
 }
 
+class DeleteUserAccountEvent extends BlocEvent {
+
+  @override
+  List<Object?> get props => [];
+
+}
+
 // GROCERY EVENTS

@@ -23,4 +23,13 @@ class AuthService {
     }
   }
 
+  Future<bool> deleteUserAccount() async {
+     try {
+       await _firebaseAuth.currentUser?.delete();
+       return true;
+     } catch(e){
+       return false;
+     }
+  }
+
 }

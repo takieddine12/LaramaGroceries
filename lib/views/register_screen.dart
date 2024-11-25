@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocListener<AuthBloc,BlocState>(
       listener: (context,state){
 
         if(state is RegisterUserState){
@@ -85,6 +85,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               message: "Register Failed",
               duration: Duration(seconds: 2),
             ));
+
+            // delete account
+            BlocProvider.of<AuthBloc>(context).add(DeleteUserAccountEvent());
+          }
+        }
+        else if (state is DeleteUserAccountState){
+          var isDeleted = state.isDeleted;
+          if(isDeleted){
+            print("User Account Deleted");
           }
         }
 

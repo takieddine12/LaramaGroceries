@@ -3,10 +3,9 @@
 class Todos {
 
 
-  //TODO 1 : Set Intro Page
-  //TODO 2 : Login Page
-  //TODO 3 : Register Page
-  //TODO 4 : Password Page
-
+  // TODO 1 : Add Groceries
+  // TODO 2 : Add Username + Hello
+  // TODO 3 : Show Groceries
+  // TODO 4 : SHOW Grocery details
 
 }

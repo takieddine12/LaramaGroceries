@@ -1,7 +1,5 @@
 
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries/bloc/bloc_event.dart';
 import 'package:groceries/bloc/bloc_state.dart';
@@ -47,5 +45,16 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
       emit(ERROR(e.toString()));
     }
   }
+
+  deleteUser(DeleteUserAccountEvent event,Emitter<BlocState> emit) async {
+    try {
+      bool isDeleted = await authService.deleteUserAccount();
+      emit(DeleteUserAccountState(isDeleted));
+    } catch(e){
+      emit(ERROR(e.toString()));
+    }
+  }
+
+
 
 }

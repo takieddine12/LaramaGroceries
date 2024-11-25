@@ -22,7 +22,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocListener<AuthBloc,BlocState>(
       listener: (context,state){
         if(state is ResetUserPasswordState){
           var isSent = state.result;
