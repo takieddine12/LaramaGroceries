@@ -25,7 +25,7 @@ class CustomContainer extends StatelessWidget {
           SizedBox(
             height: 20,
             width: 20,
-            child: SpinKitDoubleBounce(size: 25,color: Colors.deepOrange,),
+            child: SpinKitFadingCube(size: 25,color: Colors.white,),
           ) :
           Text(text,style: Utils.getBoldFont().copyWith(color: Colors.white),),
         ),

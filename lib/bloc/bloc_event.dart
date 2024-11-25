@@ -39,6 +39,7 @@ class CreateUserAccountEvent extends BlocEvent {
   final String phone;
   final String address;
 
+
   CreateUserAccountEvent(this.fullName,this.email,this.phone,this.address);
 
   @override

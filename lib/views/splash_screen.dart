@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groceries/extras/routes.dart';
@@ -15,14 +16,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     Future.delayed(const Duration(seconds: 5),(){
-       if(StorageHelper.isShown()){
-         Get.offAndToNamed(Routes.login);
-       } else {
-         Get.offAndToNamed(Routes.intro);
-       }
+        if(FirebaseAuth.instance.currentUser != null){
+            Get.offAndToNamed(Routes.home);
+        } else {
+          if(StorageHelper.isShown()){
+            Get.offAndToNamed(Routes.login);
+          } else {
+            Get.offAndToNamed(Routes.intro);
+          }
+        }
     });
   }
 

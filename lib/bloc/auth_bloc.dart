@@ -10,13 +10,14 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
   AuthService authService;
 
   AuthBloc(this.authService) : super(INITIAL()){
-    on<LoginUserEvent>((event,emit) => loginUser(event, emit));
-    on<RegisterUserEvent>((event,emit) => registerUser(event, emit));
-    on<ResetUserPasswordEvent>((event,emit) => resetPassword(event, emit));
+    on<LoginUserEvent>((event,emit) => _loginUser(event, emit));
+    on<RegisterUserEvent>((event,emit) => _registerUser(event, emit));
+    on<ResetUserPasswordEvent>((event,emit) => _resetPassword(event, emit));
+    on<CreateUserAccountEvent>((event,emit) => _createUserAccount(event, emit));
   }
 
 
-  loginUser(LoginUserEvent event,Emitter<BlocState> emit) async {
+  _loginUser(LoginUserEvent event,Emitter<BlocState> emit) async {
     try {
       emit(LOADING());
       UserCredential? userCredentials = await authService.login(event.emailAddress, event.password);
@@ -26,7 +27,7 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
     }
   }
 
-  registerUser(RegisterUserEvent event,Emitter<BlocState> emit) async {
+  _registerUser(RegisterUserEvent event,Emitter<BlocState> emit) async {
     try {
       emit(LOADING());
       UserCredential? userCredential = await authService.createAccount(event.emailAddress, event.password);
@@ -35,8 +36,19 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
       emit(ERROR(e.toString()));
     }
   }
+
+  _createUserAccount(CreateUserAccountEvent event,Emitter<BlocState> emit) async {
+    try {
+      emit(LOADING());
+      bool isDone = await authService.uploadUserInfo(event.fullName,
+          event.email, event.phone, event.address);
+      emit(CreateUserAccountState(isDone));
+    } catch(e){
+      emit(ERROR(e.toString()));
+    }
+  }
   
-  resetPassword(ResetUserPasswordEvent event,Emitter<BlocState> emit) async {
+  _resetPassword(ResetUserPasswordEvent event,Emitter<BlocState> emit) async {
     try {
       emit(LOADING());
       bool isSent = await authService.resetPassword(event.email);

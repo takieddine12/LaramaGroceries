@@ -22,7 +22,7 @@ class _CustomEditTextState extends State<CustomEditText> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.textEditingController,
-      obscureText: isObsecure,
+      obscureText: widget.isPassword ? isObsecure : false,
       style: Utils.getMediumFont(),
       decoration: InputDecoration(
         border: OutlineInputBorder(

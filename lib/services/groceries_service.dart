@@ -8,22 +8,6 @@ class GroceriesService {
   final FirebaseDatabase _firebaseDatabase = FirebaseDatabase.instance;
 
 
-  Future<bool> uploadUserInfo(String fullName , String email , String phone ,String address) async {
-    try {
-      var info = {
-        "fullName" : fullName,
-        "email" : email,
-        "phone" : phone,
-        "address" : address,
-      };
-      await _firebaseDatabase.ref().child("Users").child(_firebaseAuth.currentUser!.uid).set(info);
-      return true;
-  } catch(e){
-      return false;
-    }
-  }
-
-
   Future<bool> addGrocery(String name , double price , String description ,
         String nutritionValue) async {
 
