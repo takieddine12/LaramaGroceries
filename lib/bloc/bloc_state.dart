@@ -2,6 +2,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries/bloc/bloc_event.dart';
+import 'package:groceries/models/grocery_model.dart';
+import 'package:groceries/models/user_model.dart';
 
 abstract class BlocState {
 
@@ -34,14 +37,23 @@ class DeleteUserAccountState extends BlocState {
   bool isDeleted;
   DeleteUserAccountState(this.isDeleted);
 }
+class GetUserInfoState extends BlocState {
+  UserModel? userModel;
+  GetUserInfoState(this.userModel);
+}
 
 
 // GROCERIES
-
 class AddGroceryState extends BlocState {
 
   bool isAdded;
   AddGroceryState(this.isAdded);
 
+
+}
+class GetGroceriesState extends BlocState {
+
+  List<GroceryModel> list;
+  GetGroceriesState(this.list);
 
 }

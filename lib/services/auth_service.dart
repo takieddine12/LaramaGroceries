@@ -1,7 +1,10 @@
 
 
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:groceries/models/user_model.dart';
 
 class AuthService {
 
@@ -50,4 +53,24 @@ class AuthService {
      }
   }
 
+  Future<UserModel?> getUserInfo() async {
+    try {
+
+      DataSnapshot dataSnapshot = await _firebaseDatabase
+          .ref()
+          .child("Users")
+          .child(_firebaseAuth.currentUser!.uid)
+          .get();
+
+      if (dataSnapshot.exists) {
+
+        Map<String, dynamic> userData = Map<String, dynamic>.from(dataSnapshot.value as Map);
+        return UserModel.fromJson(userData);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 }

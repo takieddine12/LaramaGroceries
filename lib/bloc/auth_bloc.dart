@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries/bloc/bloc_event.dart';
 import 'package:groceries/bloc/bloc_state.dart';
+import 'package:groceries/models/user_model.dart';
 import 'package:groceries/services/auth_service.dart';
 
 class AuthBloc extends Bloc<BlocEvent,BlocState> {
@@ -14,6 +15,8 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
     on<RegisterUserEvent>((event,emit) => _registerUser(event, emit));
     on<ResetUserPasswordEvent>((event,emit) => _resetPassword(event, emit));
     on<CreateUserAccountEvent>((event,emit) => _createUserAccount(event, emit));
+    on<DeleteUserAccountEvent>((event,emit) => _deleteUser(event, emit));
+    on<GetUserInfoEvent>((event,emit) => _getUserInfo(event, emit));
   }
 
 
@@ -58,7 +61,7 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
     }
   }
 
-  deleteUser(DeleteUserAccountEvent event,Emitter<BlocState> emit) async {
+  _deleteUser(DeleteUserAccountEvent event,Emitter<BlocState> emit) async {
     try {
       bool isDeleted = await authService.deleteUserAccount();
       emit(DeleteUserAccountState(isDeleted));
@@ -67,6 +70,15 @@ class AuthBloc extends Bloc<BlocEvent,BlocState> {
     }
   }
 
+
+  _getUserInfo(GetUserInfoEvent event,Emitter<BlocState> emit) async {
+    try {
+      UserModel? data = await authService.getUserInfo();
+      emit(GetUserInfoState(data));
+    } catch(e){
+      emit(ERROR(e.toString()));
+    }
+  }
 
 
 }

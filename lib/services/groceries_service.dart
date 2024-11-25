@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:groceries/models/grocery_model.dart';
 
 class GroceriesService {
 
@@ -29,4 +30,25 @@ class GroceriesService {
 
   }
 
+  Future<List<GroceryModel>> getGroceries() async {
+    try {
+      DataSnapshot dataSnapshot = await _firebaseDatabase.ref().child("Groceries").get();
+
+      if (dataSnapshot.exists) {
+        List<GroceryModel> groceries = [];
+
+        for (var child in dataSnapshot.children) {
+          Map<String, dynamic> groceryData = Map<String, dynamic>.from(child.value as Map);
+          groceries.add(GroceryModel.fromJson(groceryData));
+        }
+
+        return groceries;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
+
+  }
 }

@@ -79,3 +79,17 @@ class AddGroceriesEvent extends BlocEvent {
   List<Object?> get props => [name,price,description,nutritionValue];
 
 }
+
+class GetUserInfoEvent extends BlocEvent {
+
+  @override
+  List<Object?> get props => [];
+
+}
+
+class GetGroceriesEvent extends BlocEvent {
+
+  @override
+  List<Object?> get props => [];
+
+}

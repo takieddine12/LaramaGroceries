@@ -39,11 +39,21 @@ class _AddGroceryScreenState extends State<AddGroceryScreen> {
           if(state is AddGroceryState){
             var isAdded = state.isAdded;
             if(isAdded){
+
+              setState(() {
+                isLoading = false;
+              });
+
               Get.showSnackbar(GetSnackBar(
                 message: "Grocery Successfully Added",
               ));
 
             } else {
+
+              setState(() {
+                isLoading = false;
+              });
+
               Get.showSnackbar(GetSnackBar(
                 message: "Failed to add grocery",
               ));
