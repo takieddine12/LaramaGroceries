@@ -20,6 +20,13 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   final TextEditingController _emailController = TextEditingController();
   bool isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc,BlocState>(

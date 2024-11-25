@@ -35,3 +35,13 @@ class DeleteUserAccountState extends BlocState {
   DeleteUserAccountState(this.isDeleted);
 }
 
+
+// GROCERIES
+
+class AddGroceryState extends BlocState {
+
+  bool isAdded;
+  AddGroceryState(this.isAdded);
+
+
+}

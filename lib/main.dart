@@ -15,7 +15,7 @@ void main() async {
   runApp(MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => AuthBloc(AuthService())),
-        BlocProvider(create: (_) => GroceryBloc())
+        BlocProvider(create: (_) => GroceryBloc(GroceriesService()))
       ],
       child: GetMaterialApp(
         home: MyApp(),

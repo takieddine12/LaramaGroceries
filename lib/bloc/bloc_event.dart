@@ -64,3 +64,17 @@ class DeleteUserAccountEvent extends BlocEvent {
 }
 
 // GROCERY EVENTS
+
+class AddGroceriesEvent extends BlocEvent {
+
+  final String name;
+  final double price;
+  final String description;
+  final String nutritionValue;
+
+  AddGroceriesEvent(this.name,this.price,this.description,this.nutritionValue);
+
+  @override
+  List<Object?> get props => [name,price,description,nutritionValue];
+
+}

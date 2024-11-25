@@ -23,4 +23,26 @@ class GroceriesService {
     }
   }
 
+
+  Future<bool> addGrocery(String name , double price , String description ,
+        String nutritionValue) async {
+
+
+    try {
+      var groceryID = DateTime.now().microsecondsSinceEpoch.toString();
+      var grocery = {
+        "name" : name,
+        "price" : price,
+        "description" : description,
+        "nutritionValue" : nutritionValue,
+        "groceryID" : groceryID
+      };
+      await _firebaseDatabase.ref().child("Groceries").child(groceryID).set(grocery);
+      return true;
+    } catch(e){
+      return false;
+    }
+
+  }
+
 }

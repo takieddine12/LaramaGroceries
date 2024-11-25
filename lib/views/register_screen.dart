@@ -30,6 +30,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isLoading = false;
 
   @override
+  void dispose() {
+    _fullNameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+    _addressController.dispose();
+    _passController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc,BlocState>(
       listener: (context,state){
